@@ -1,6 +1,6 @@
 # Notes-App
 
-**Notes-App** is a note making app made using Node.js
+**Notes-App** is a note making app made using Node.js. 
 Basic features it provides are:
 1. Adding new notes
 2. Deleting notes
