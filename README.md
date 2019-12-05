@@ -6,6 +6,7 @@ Basic features it provides are:
 2. Deleting notes
 3. Listing all notes
 4. Reading notes
+5. Mark a note as Completed
 
 Currently, the app can only be used through Command Line. I'll make a GUI in the future.
 
@@ -20,4 +21,7 @@ Currently, the app can only be used through Command Line. I'll make a GUI in the
 
 ### Reading a Note
 ```node app.js read --title="Note Title"```
+
+### Mark a Note as Completed
+```node app.js completed --title="Note Title"```
 
