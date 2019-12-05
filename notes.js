@@ -25,7 +25,8 @@ const addNote = (title, body) => {
     if(duplicateNote === undefined) { // title is not used already 
         notes.push({
             title: title,
-            body: body
+            body: body,
+            completed: false
         })
 
         print(chalk.green('\"' + title + '\" added to Notes!'))
@@ -51,15 +52,23 @@ const removeNote = (title) => {
     }
 }
 
+const checkStatus = (note) => {
+    if(note.completed === true)
+        return chalk.green(' [completed]')
+    else
+        return chalk.red(' [not completed]')
+}
+
 const listNotes = () => {
     const notes = loadNotes()
     var count = 1
 
     if(notes.length > 0) {
-        print(chalk.bgGreen.black('Your Notes:'))
-
+        print(chalk.inverse('\nYour Notes:'))
+        
         notes.forEach(note => {
-            print(count + ') ' + note.title)
+            const status = checkStatus(note)
+            print(count + ') ' + note.title + status)
             count++
         });
     }
@@ -79,9 +88,28 @@ const readNote = (title) => {
     }
 }
 
+const markCompleted = (title) => {
+        const notes = loadNotes()
+        const reqdNote = notes.find((note) => note.title === title)
+        
+        if(reqdNote === undefined)
+            print(chalk.red('Note not found'))
+        else {
+            notes.forEach((note) => {
+                if(note.title === title) {
+                    note.completed = true
+                    print(chalk.green('\"' + title + '\" ' + 'marked as completed'))
+                }
+            })
+
+            saveNotes(notes)
+        }
+}
+
 module.exports = { 
     addNote: addNote, 
     removeNote: removeNote,
     listNotes: listNotes,
-    readNote: readNote
+    readNote: readNote,
+    markCompleted: markCompleted
 } 

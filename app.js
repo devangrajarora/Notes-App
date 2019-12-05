@@ -60,4 +60,21 @@ yargs.command({
     }
 })
 
+yargs.command({
+    command: 'completed',
+    describe: 'Mark note as completed',
+    builder: {
+        title: {
+            describe: 'Title of the note',
+            demandOption: true,
+            type: 'string'
+        }
+    },
+    handler: (argv) => {
+        notes.markCompleted(argv.title)
+    }
+})
+
+
+
 yargs.parse() // parse input fom CLI, returns argv object
